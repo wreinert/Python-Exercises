@@ -13,8 +13,8 @@ dates = []
 
 with open("birthdays.json", "r") as f:
     birthdays = json.load(f)
-for i in birthdays:
-    d = birthdays.get(i)
+for i in birthdays: #for x in birthdays.values():
+    d = birthdays.get(i) #month.append(x.split()[1])
     dates.append((d.split(' '))[1])
 
 count = Counter(dates)
