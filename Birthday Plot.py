@@ -2,6 +2,7 @@
 
 import json
 from collections import Counter
+from bokeh.plotting import figure, show, output_file
 
 dates = []
 
@@ -19,8 +20,7 @@ while counter < len(dates_list):
     print("{}: {}".format(dates_list[counter],count[dates_list[counter]]))
     counter += 1
 
-from bokeh.plotting import figure, show, output_file
-
+#Chart
 output_file("plot.html")
 
 x = list(set(count.keys())) #months
@@ -32,7 +32,7 @@ for b in x: #adds the number of birthdays to y axis
 
 #drawing the chart
 plot = figure(x_range=x_categories)
-plot.vbar(x=x, top=y, width=0.5)
+plot.vbar(x=sorted(x), top=y, width=0.5)
 show(plot)
 
 
