@@ -3,6 +3,7 @@
 import json
 from collections import Counter
 from bokeh.plotting import figure, show, output_file
+from bokeh.io import curdoc
 
 dates = []
 
@@ -21,7 +22,7 @@ while counter < len(dates_list):
     counter += 1
 
 #Chart
-output_file("plot.html")
+output_file("birthday_plot.html")
 
 x = list(set(count.keys())) #months
 y = [] #count
@@ -30,11 +31,9 @@ x_categories = x #category names
 for b in x: #adds the number of birthdays to y axis
     y.append(count[b])
 
+curdoc().theme = "dark_minimal"
+
 #drawing the chart
-plot = figure(x_range=x_categories)
-plot.vbar(x=sorted(x), top=y, width=0.5)
+plot = figure(title = "Birthdays", x_range=x_categories)
+plot.vbar(x=x, top=y, width=0.5)
 show(plot)
-
-
-
-
